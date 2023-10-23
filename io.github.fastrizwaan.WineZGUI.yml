@@ -127,7 +127,7 @@ modules:
   - name: desktop-file-utils
     build-options:
       no-debuginfo: true  
-    buildsystem: autotools
+    buildsystem: meson
     sources:
       - type: archive
         url: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.27.tar.xz
