@@ -121,17 +121,17 @@ modules:
       - make install 
     sources:
       - type: archive
-        url: https://github.com/exiftool/exiftool/archive/refs/tags/12.57.tar.gz
-        sha256: ffc55c1177e50b819072c500cbbd0fecbb1be671584a0f43217bfba597ffa933
+        url: https://github.com/exiftool/exiftool/archive/refs/tags/12.68.tar.gz
+        sha256: 49273f93edcd32eee3725b458a2c7151d8e353281dc52bfa3d063c92962ab6d8
         
   - name: desktop-file-utils
     build-options:
       no-debuginfo: true  
-    buildsystem: autotools
+    buildsystem: meson
     sources:
       - type: archive
-        url: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.26.tar.xz
-        sha256: b26dbde79ea72c8c84fb7f9d870ffd857381d049a86d25e0038c4cef4c747309
+        url: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.27.tar.xz
+        sha256: a0817df39ce385b6621880407c56f1f298168c040c2032cedf88d5b76affe836
 
   - name: WineZGUI
     buildsystem: simple
@@ -139,6 +139,6 @@ modules:
       - ./setup --install --flatpak --prefix=/app
     sources:
       - type: git
-        tag: 0.97.12-1
-        commit: d22bbaa02d40beaf13d3b50723d79e438b6c868b
+        tag: 0.97.13
+        commit: be25b7360f8b9a3e07180f704a6283d536a5cd55
         url: https://github.com/fastrizwaan/WineZGUI.git
