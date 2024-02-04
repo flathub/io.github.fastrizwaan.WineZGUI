@@ -147,5 +147,5 @@ modules:
     sources:
       - type: git
         tag: 0.98.8
-        commit: 722d0e5d331877d6be477c0f68bdcd3262e60317
+        commit: 38f20b8e6e406cd093bc05b5c22b90a9acfb111b
         url: https://github.com/fastrizwaan/WineZGUI.git
