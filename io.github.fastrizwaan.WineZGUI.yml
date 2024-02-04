@@ -31,13 +31,15 @@ finish-args:
   - --filesystem=xdg-music
   - --filesystem=xdg-pictures
   - --filesystem=xdg-videos
-  # WineZGUI import wine prefix: Needs Read access to copy games and runners from wine, bottles, playonlinux, lutris, heroic launcher data directories. 
-  - --filesystem=~/Games:ro
-  - --filesystem=~/.wine:ro
-  - --filesystem=~/.var/app/org.winehq.Wine/data/wine:ro
-  - --filesystem=~/.var/app/com.usebottles.bottles/data/bottles:ro
-  - --filesystem=~/.var/app/com.playonlinux.PlayOnLinux4/data/PlayOnLinux/wineprefix:ro
-  - --filesystem=~/.var/app/org.phoenicis.playonlinux/.Phoenicis/containers/wineprefix:ro
+  # WineZGUI import wine prefix: Needs access to copy games and runners from wine, bottles, playonlinux, lutris, heroic launcher data directories. 
+  # Using :ro messes up the path to /run/... instead of ~/ breaking copying
+  # flatpak bug with :ro breaks realpath.
+  - --filesystem=~/Games
+  - --filesystem=~/.wine
+  - --filesystem=~/.var/app/org.winehq.Wine/data/wine
+  - --filesystem=~/.var/app/com.usebottles.bottles/data/bottles
+  - --filesystem=~/.var/app/com.playonlinux.PlayOnLinux4/data/PlayOnLinux/wineprefix
+  - --filesystem=~/.var/app/org.phoenicis.playonlinux/.Phoenicis/containers/wineprefix
   
 cleanup:
   - '*.a'
