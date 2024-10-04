@@ -1,9 +1,9 @@
 app-id: io.github.fastrizwaan.WineZGUI
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 base: org.winehq.Wine
-base-version: stable-23.08
+base-version: stable-24.08
 command: winezgui
 #rename-icon: winezgui
 #rename-desktop-file: winezgui.desktop
