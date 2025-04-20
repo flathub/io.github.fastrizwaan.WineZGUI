@@ -58,7 +58,7 @@ inherit-extensions:
   - org.freedesktop.Platform.ffmpeg-full
   - org.freedesktop.Platform.GL32
   - org.freedesktop.Platform.VAAPI.Intel.i386
-  - org.winehq.Wine.DLLs
+  #- org.winehq.Wine.DLLs # upstream removed org.winehq.Wine.DLLs.dxvk
   - org.winehq.Wine.gecko
   - org.winehq.Wine.mono
 
@@ -145,7 +145,7 @@ modules:
   - name: WineZGUI
     buildsystem: simple
     build-commands:
-      - ./setup -i --flatpak --prefix=/app
+      - ./setup --install --flatpak --prefix=/app
     sources:
       - type: git
         tag: 0.99.14
