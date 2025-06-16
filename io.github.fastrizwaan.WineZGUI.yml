@@ -145,7 +145,7 @@ modules:
   - name: WineZGUI
     buildsystem: simple
     build-commands:
-      - ./setup --install --flatpak --prefix=/app
+      - ./setup -i --flatpak --prefix=/app
     sources:
       - type: git
         tag: 0.99.15
