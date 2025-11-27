@@ -54,8 +54,8 @@ cleanup:
 
 inherit-extensions:
   - org.freedesktop.Platform.Compat.i386
-  - org.freedesktop.Platform.ffmpeg_full.i386
-  - org.freedesktop.Platform.ffmpeg-full
+#  - org.freedesktop.Platform.ffmpeg_full.i386
+#  - org.freedesktop.Platform.ffmpeg-full
   - org.freedesktop.Platform.GL32
   - org.freedesktop.Platform.VAAPI.Intel.i386
   #- org.winehq.Wine.DLLs # upstream removed org.winehq.Wine.DLLs.dxvk
@@ -71,6 +71,14 @@ add-extensions:
     merge-dirs: share/vulkan/explicit_layer.d;share/vulkan/implicit_layer.d;
     no-autodownload: true
     autodelete: false
+
+  org.freedesktop.Platform.codecs_extra.i386:
+    directory: lib/i386-linux-gnu/codecs-extra
+    version: '25.08-extra'
+    autodelete: false
+    add-ld-path: lib
+    cleanup-commands:
+      - mkdir -p /app/lib/i386-linux-gnu/codecs-extra
 
 modules:
  
@@ -93,7 +101,7 @@ modules:
 
   - name: icoutils
     build-options:
-      no-debuginfo: true  
+      no-debuginfo: true
     buildsystem: autotools
     sources:
       - type: archive
@@ -102,6 +110,14 @@ modules:
           - https://download-mirror.savannah.gnu.org/releases/icoutils/icoutils-0.32.3.tar.bz2
           - https://ftp.up.pt/pub/nongnu/icoutils/icoutils-0.32.3.tar.bz2
         sha256: 17abe02d043a253b68b47e3af69c9fc755b895db68fdc8811786125df564c6e0
+
+      # Patch: wrestool memory fix
+      - type: patch
+        path: 0001-wrestool-Fix-get_resource_id_quoted-to-return-heap-a.patch
+
+      # Patch: GCC 15 / C23 callback fixes (your iterator(void*) patch)
+      - type: patch
+        path: 0002-gcc15.patch
 
   - name: perl
     no-autogen: true
@@ -113,8 +129,8 @@ modules:
       ldflags: "-fpic"
     sources:
     - type: archive
-      url: https://www.cpan.org/src/5.0/perl-5.38.0.tar.xz
-      sha256: eca551caec3bc549a4e590c0015003790bdd1a604ffe19cc78ee631d51f7072e
+      url: https://www.cpan.org/src/5.0/perl-5.42.0.tar.xz
+      sha256: 73cf6cc1ea2b2b1c110a18c14bbbc73a362073003893ffcedc26d22ebdbdd0c3
     - type: script
       dest-filename: configure
       commands:
@@ -141,6 +157,13 @@ modules:
       - type: archive
         url: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.27.tar.xz
         sha256: a0817df39ce385b6621880407c56f1f298168c040c2032cedf88d5b76affe836
+
+  - name: zenity
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/zenity/3.44/zenity-3.44.5.tar.xz
+        sha256: 29ac447f4246b1da783a3c28ddc80b0ef7c80eccd5836ad9140abf89841d0eab
 
   - name: WineZGUI
     buildsystem: simple
